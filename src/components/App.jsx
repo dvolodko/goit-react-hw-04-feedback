@@ -12,10 +12,9 @@ export class App extends Component {
     bad: 0,
   };
 
-  onLeaveFeedback = event => {
-    const value = event.currentTarget.dataset.value;
+  onLeaveFeedback = option => {
     this.setState(prevState => ({
-      [value]: prevState[value] + 1,
+      [option]: prevState[option] + 1,
     }));
   };
 
@@ -34,7 +33,7 @@ export class App extends Component {
         <h1>Cafe Expresso</h1>
         <Section title={'Please leave your feedback'}>
           <FeedbackOptions
-            options={['Good', 'Neutral', 'Bad']}
+            options={Object.keys(this.state)}
             onLeaveFeedback={this.onLeaveFeedback}
           />
         </Section>

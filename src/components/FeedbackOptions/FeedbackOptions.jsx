@@ -5,19 +5,16 @@ import { FeedbackButton } from './FeedbackOptions.styled';
 export const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <>
-      <FeedbackButton type="button" data-value="good" onClick={onLeaveFeedback}>
-        &#128578; {options[0]}
-      </FeedbackButton>
-      <FeedbackButton
-        type="button"
-        data-value="neutral"
-        onClick={onLeaveFeedback}
-      >
-        &#128580; {options[1]}
-      </FeedbackButton>
-      <FeedbackButton type="button" data-value="bad" onClick={onLeaveFeedback}>
-        &#128577; {options[2]}
-      </FeedbackButton>
+      {options.map(option => (
+        <FeedbackButton
+          key={option}
+          type="button"
+          data-value={option}
+          onClick={() => onLeaveFeedback(option)}
+        >
+          {option}
+        </FeedbackButton>
+      ))}
     </>
   );
 };
