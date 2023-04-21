@@ -7,13 +7,23 @@ import { AppContainer } from './App.Styled';
 
 const App = () => {
   const [good, setGood] = useState(0);
-  const [neutral, setnNeutral] = useState(0);
+  const [neutral, setNeutral] = useState(0);
   const [bad, setBad] = useState(0);
 
   const onLeaveFeedback = option => {
-    this.setState(prevState => ({
-      [option]: prevState[option] + 1,
-    }));
+    switch (option) {
+      case 'good':
+        setGood(good + 1);
+        break;
+      case 'neutral':
+        setNeutral(neutral + 1);
+        break;
+      case 'bad':
+        setBad(bad + 1);
+        break;
+      default:
+        console.log('there is no such feedback option :(');
+    }
   };
 
   const countTotalFeedback = () => {
@@ -29,7 +39,7 @@ const App = () => {
       <h1>Cafe Expresso</h1>
       <Section title={'Please leave your feedback'}>
         <FeedbackOptions
-          options={(good, neutral, bad)}
+          options={['good', 'neutral', 'bad']}
           onLeaveFeedback={onLeaveFeedback}
         />
       </Section>
